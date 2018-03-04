@@ -66,6 +66,7 @@
         android:id="@+id/textView3"
         android:layout_width="251dp"
         android:layout_height="43dp"
+        android:fontFamily="@font/montserrat"
         android:singleLine="false"
         android:text="Find a team in your city and dominate the league"
         android:textAlignment="center"
@@ -73,5 +74,20 @@
         android:textSize="14sp"
         tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="253dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/swoosh_button"
+        android:fontFamily="@font/montserrat"
+        android:text="GET STARTED"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
