@@ -1,4 +1,4 @@
-package rskogeby.com.swoosh
+package rskogeby.com.swoosh.Controller
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
