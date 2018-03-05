@@ -5,27 +5,41 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_skill.*
-import rskogeby.com.swoosh.Utilities.EXTRA_LEAGUE
 import rskogeby.com.swoosh.R
-import rskogeby.com.swoosh.Utilities.EXTRA_SKILL
+import rskogeby.com.swoosh.Utilities.EXTRA_PLAYER
+import rskogeby.com.swoosh.model.Player
 
 class SkillActivity : BaseActivity() {
 
-    var league = ""
-    var skill = ""
+    lateinit var player : Player
+
+    // Save instance state when turning screen
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putParcelable(EXTRA_PLAYER,player)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill)
-        league = intent.getStringExtra(EXTRA_LEAGUE)
+        player = intent.getParcelableExtra(EXTRA_PLAYER)
     }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState != null) {
+            player = savedInstanceState.getParcelable(EXTRA_PLAYER)
+        }
+    }
+
     fun onBallerClick(view: View) {
         beginnerBtn.isChecked = false
-        skill="baller"
+        player.skill="baller"
     }
 
     fun onBeginnerClick(view: View) {
         ballerBtn.isChecked = false
-        skill = "beginner"
+        player.skill = "beginner"
     }
 
     fun isToggled(): Boolean {
@@ -33,10 +47,9 @@ class SkillActivity : BaseActivity() {
     }
 
     fun onSkillFinishClick(view: View) {
-        if (skill != "" && isToggled()) {
+        if (player.skill != "" && isToggled()) {
             val lastActivity = Intent(this, FinishActivity::class.java)
-            lastActivity.putExtra(EXTRA_LEAGUE,league)
-            lastActivity.putExtra(EXTRA_SKILL,skill)
+            lastActivity.putExtra(EXTRA_PLAYER,player)
             startActivity(lastActivity)
         } else {
             Toast.makeText(this,"Please select a skill level.",Toast.LENGTH_SHORT).show()
