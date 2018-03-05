@@ -11,6 +11,7 @@ import rskogeby.com.swoosh.R
 class SkillActivity : BaseActivity() {
 
     var league = ""
+    var skill = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill)
@@ -18,12 +19,12 @@ class SkillActivity : BaseActivity() {
     }
     fun onBallerClick(view: View) {
         beginnerBtn.isChecked = false
-        league="baller"
+        skill="baller"
     }
 
     fun onBeginnerClick(view: View) {
         ballerBtn.isChecked = false
-        league = "beginner"
+        skill = "beginner"
     }
 
     fun isToggled(): Boolean {
@@ -31,9 +32,9 @@ class SkillActivity : BaseActivity() {
     }
 
     fun onSkillFinishClick(view: View) {
-        if (league != "" && isToggled()) {
-            val skillActivity = Intent(this, SkillActivity::class.java)
-            startActivity(skillActivity)
+        if (skill != "" && isToggled()) {
+            val finishActivity = Intent(this, FinishActivity::class.java)
+            startActivity(finishActivity)
         } else {
             Toast.makeText(this,"Please select a skill level.",Toast.LENGTH_SHORT).show()
         }
