@@ -7,6 +7,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_skill.*
 import rskogeby.com.swoosh.Utilities.EXTRA_LEAGUE
 import rskogeby.com.swoosh.R
+import rskogeby.com.swoosh.Utilities.EXTRA_SKILL
 
 class SkillActivity : BaseActivity() {
 
@@ -33,8 +34,10 @@ class SkillActivity : BaseActivity() {
 
     fun onSkillFinishClick(view: View) {
         if (skill != "" && isToggled()) {
-            val finishActivity = Intent(this, FinishActivity::class.java)
-            startActivity(finishActivity)
+            val lastActivity = Intent(this, FinishActivity::class.java)
+            lastActivity.putExtra(EXTRA_LEAGUE,league)
+            lastActivity.putExtra(EXTRA_SKILL,skill)
+            startActivity(lastActivity)
         } else {
             Toast.makeText(this,"Please select a skill level.",Toast.LENGTH_SHORT).show()
         }
